@@ -116,6 +116,7 @@ async function handleFormSubmit(event) {
 
   await API.addExercise(workoutData);
   clearInputs();
+  validateInputs();
   toast.classList.add("success");
 }
 
@@ -153,4 +154,4 @@ toast.addEventListener("animationend", handleToastAnimationEnd);
 
 document
   .querySelectorAll("input")
-  .forEach(element => element.addEventListener("input", validateInputs))
+  .forEach(element => element.addEventListener("input", validateInputs));
