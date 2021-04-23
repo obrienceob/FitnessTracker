@@ -1,13 +1,3 @@
-fetch("/api/workouts/range")
-  .then(response => {
-    return response.json();
-  })
-  .then(data => {
-    populateChart(data);
-  });
-
-API.getWorkoutsInRange()
-
 function generatePalette() {
   const arr = [
     '#003f5c',
@@ -30,9 +20,9 @@ function generatePalette() {
 
   return arr;
 }
-//changed how the duration data was pulled 
+
 function populateChart(data) {
-  let durations = duration(data);
+  let durations = data.map(({ totalDuration }) => totalDuration);
   let pounds = calculateTotalWeight(data);
   let workouts = workoutNames(data);
   const colors = generatePalette();
@@ -201,19 +191,6 @@ function calculateTotalWeight(data) {
   return totals;
 }
 
-//adding in a duration function
-function duration(data) {
-  let durations = [];
-
-  data.forEach(workout => {
-    workout.exercises.forEach(exercise => {
-      durations.push(exercise.duration);
-    });
-  });
-
-  return durations;
-}
-
 function workoutNames(data) {
   let workouts = [];
 
@@ -228,4 +205,4 @@ function workoutNames(data) {
 }
 
 // get all workout data from back-end
-// API.getWorkoutsInRange().then(populateChart);
+API.getWorkoutsInRange().then(populateChart);

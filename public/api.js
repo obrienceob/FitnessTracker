@@ -41,4 +41,4 @@ const API = {
 
     return json;
   },
-};
+}
