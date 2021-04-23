@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+//defining exercise fields
 const exerciseSchema = new mongoose.Schema({
     type: {
         type: String,
